@@ -5,17 +5,18 @@ class Email{
     private function  __construct( string $email ) {
       
         $this->email = $email;
-        Email::validateEmail();
+        $this->validateEmail();
+       
       
      }
 
-     public static function returnInstance() : self
+     public static function returnInstance(string $email) : self
       {
-        return new self($this->email);
+        return new self($email);
       }
 
 
-      private function __toString(): string 
+      public function __toString(): string 
         {
             return  $this->email;
         }
@@ -26,6 +27,8 @@ class Email{
          throw new \InvalidArgumentException(
               sprintf(' "%s" is not a valid email!', $this->email)
            );
+        }else{
+         return true;
         }
      }
 }
